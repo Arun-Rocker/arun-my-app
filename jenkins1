@@ -1,0 +1,21 @@
+node{
+    stage("git checkout"){
+    git changelog: false, credentialsId: 'arun-github', poll: false, 
+    url: 'https://github.com/Arun-Rocker/arun-my-app'
+    }
+    stage("mavan package"){
+    sh "mvn clean package"
+    }
+    stage("G-mail Notification"){
+    mail bcc: '', body: 'this is git and mavan build', cc: 
+    'arunthonduru@gmail.com', from: '', replyTo: '', subject: 'Git-Maven_build', 
+    to: 'thonduru.arunkumar@gmail.com'
+    echo "Gmail message sent sucessfully"       
+    }
+    stage("Slack-Notification"){
+    mail bcc: '', body: 'this is git and mavan build', cc: 
+    'arunthonduru@gmail.com', from: '', replyTo: '', subject: 'Git-Maven_build', 
+    to: 'thonduru.arunkumar@gmail.com'
+	echo "stack message sent sucessfully"
+	}
+}
