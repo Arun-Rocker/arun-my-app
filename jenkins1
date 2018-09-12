@@ -7,7 +7,8 @@ node{
     sh "mvn clean package"
     }
     stage('Deploy to Tomcat'){
-    sshagent(['tomcat-dev']) 
+    sshagent(['tomcat-dev'])
+sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@13.232.212.123:/opt/tomcat8/webapps/'	
     }
     stage("G-mail Notification"){
     mail bcc: '', body: 'this is git and mavan build', cc: 
