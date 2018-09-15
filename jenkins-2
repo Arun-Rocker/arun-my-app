@@ -3,7 +3,7 @@ stage("git-scm"){
 git credentialsId: 'arun-github', url: 'https://github.com/Arun-Rocker/arun-my-app'
 }
 stage("maven-build tool"){
-mvn "clean package"
+sh "mvn clean package"
 }
 stage("Tomcat-webserver"){
 sshagent(['Tomcat-dev']) {
