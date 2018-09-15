@@ -1,0 +1,21 @@
+node{
+stage("git-scm"){
+git credentialsId: 'arun-github', url: 'https://github.com/Arun-Rocker/arun-my-app'
+}
+stage("maven-build tool"){
+mvn "clean package"
+}
+stage("Tomcat-webserver"){
+sshagent(['Tomcat-dev']) {
+     sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@:13.232.180.185:/opt/tomcat8/webapps/'
+}
+}
+stage("G-mail"){
+mail bcc: '', body: 'I ma very happy!!!!!', cc: '', from: '', replyTo: '', subject: 'sucessfully deployed to tomcat', to: 'thonduru.arunkumar@gmail.com'
+
+}
+Stage("Slck-Notification"){
+slackSend color: 'good', message: 'message received in slack'
+}
+
+}
