@@ -11,8 +11,7 @@ sshagent(['Tomcat-dev']) {
 }
 }
 stage("G-mail"){
-mail bcc: '', body: 'I ma very happy!!!!!', cc: '', from: '', replyTo: '', subject: 'sucessfully deployed to tomcat', to: 'thonduru.arunkumar@gmail.com'
-
+mail bcc: '', body: 'Gmail Notification is successfully sent!!!', cc: '', from: '', replyTo: '', subject: 'Gmail-Notification', to: 'thonduru.arunkumar@gmail.com'
 }
 Stage("Slck-Notification"){
 slackSend color: 'good', message: 'message received in slack'
